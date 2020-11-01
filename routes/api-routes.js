@@ -26,14 +26,12 @@ module.exports = function(app) {
 
     // Used by api.js to add an exercise to a workout
     app.put("/api/workouts/:id", ({body, params}, res) => {
-        // console.log(body, params)
         const workoutId = params.id;
         let savedExercises = [];
 
         // gets all the currently saved exercises in the current workout
         db.Workout.find({_id: workoutId})
             .then(dbWorkout => {
-                // console.log(dbWorkout)
                 savedExercises = dbWorkout[0].exercises;
                 res.json(dbWorkout[0].exercises);
                 let allExercises = [...savedExercises, body]

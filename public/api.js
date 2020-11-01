@@ -17,6 +17,7 @@ const API = {
 
 // Update workout with new exercise
   async addExercise(data) {
+    // set id equal to the end of url (split by the = sign)
     const id = location.search.split("=")[1];
 
     const res = await fetch("/api/workouts/" + id, {
@@ -29,6 +30,8 @@ const API = {
 
     return json;
   },
+
+  // Create new workout
   async createWorkout(data = {}) {
     const res = await fetch("/api/workouts", {
       method: "POST",

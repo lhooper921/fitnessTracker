@@ -3,8 +3,8 @@ async function initWorkout() {
   console.log("Last workout:", lastWorkout);
   if (lastWorkout) {
     document
-      .querySelector("a[href='/exercise?']")
-      .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
+      .querySelector("a[href='exercise?']")
+      .setAttribute("href", `exercise?id=${lastWorkout._id}`);
 
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
@@ -73,14 +73,14 @@ function renderWorkoutSummary(summary) {
   });
 }
 
-function renderNoWorkoutText() {
-  const container = document.querySelector(".workout-stats");
-  const p = document.createElement("p");
-  const strong = document.createElement("strong");
-  strong.textContent = "You have not created a workout yet!"
+// function renderNoWorkoutText() {
+//   const container = document.querySelector(".workout-stats");
+//   const p = document.createElement("p");
+//   const strong = document.createElement("strong");
+//   strong.textContent = "You have not created a workout yet!"
 
-  p.appendChild(strong);
-  container.appendChild(p);
-}
+//   p.appendChild(strong);
+//   container.appendChild(p);
+// }
 
 initWorkout();
