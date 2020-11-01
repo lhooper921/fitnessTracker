@@ -1,10 +1,10 @@
-const express = require('express')
-const app = express()
-// const bodyParser = require('body-parser')
-const logger = require("morgan");
 
-const mongoose = require("mongoose");
+var express = require('express');
 
+var logger = require('morgan');
+var app = express();
+//Import the mongoose module
+var mongoose = require('mongoose');
 const PORT = process.env.PORT || 3000;
 
 mongoose.connect(
@@ -16,6 +16,12 @@ mongoose.connect(
     useFindAndModify: false
   }
 );
+
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
 app.use(logger("dev"));
@@ -29,11 +35,11 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + './public/index.html')
 });
 
-const db = require("./models");
+
 
 // Routing
-require("./routes/api-routes")(app);
-require("./routes/html-routes")(app);
+require("./routes/api-routes");
+require("./routes/html-routes");
 
 
 app.listen(PORT, () => {

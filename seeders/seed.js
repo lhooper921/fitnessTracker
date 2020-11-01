@@ -1,8 +1,13 @@
 let mongoose = require("mongoose");
 let db = require("../models");
 
-let uri = "mongodb+srv://lhooper921:qNGf7c2NMuqb8i8W@cluster0.wqywj.mongodb.net/fitness-tracker?retryWrites=true&w=majority"
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose
+  .connect(
+    process.env.MONGODB_URI || "mongodb://localhost/fitnessTrackerDB",
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
 
 let workoutSeed = [
   {
