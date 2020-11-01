@@ -1,10 +1,8 @@
 let mongoose = require("mongoose");
 let db = require("../models");
 
-mongoose.connect("mongodb://localhost/workout", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+let uri = "mongodb+srv://lhooper921:qNGf7c2NMuqb8i8W@cluster0.wqywj.mongodb.net/fitness-tracker?retryWrites=true&w=majority"
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let workoutSeed = [
   {

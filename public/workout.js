@@ -44,6 +44,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(options);
 }
 
+// Create the workout summary within the workout-stats container
 function renderWorkoutSummary(summary) {
   const container = document.querySelector(".workout-stats");
 
@@ -57,6 +58,7 @@ function renderWorkoutSummary(summary) {
     totalDistance: "Total Distance Covered"
   };
 
+  // For each key, create a strong p element
   Object.keys(summary).forEach(key => {
     const p = document.createElement("p");
     const strong = document.createElement("strong");

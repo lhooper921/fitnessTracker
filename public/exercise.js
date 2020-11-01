@@ -18,18 +18,22 @@ let workoutType = null;
 let shouldNavigateAway = false;
 
 async function initExercise() {
+  // Create empty variable for await function
   let workout;
 
+  // if there is no workout, create workout
   if (location.search.split("=")[1] === undefined) {
     workout = await API.createWorkout()
     console.log(workout)
   }
+  // if there is a workout location.search = this query string
   if (workout) {
     location.search = "?id=" + workout._id;
   }
 
 }
 
+// Call function
 initExercise();
 
 function handleWorkoutTypeChange(event) {
@@ -49,6 +53,7 @@ function handleWorkoutTypeChange(event) {
   validateInputs();
 }
 
+// Makes sure inputs contain something
 function validateInputs() {
   let isValid = true;
 
@@ -86,6 +91,7 @@ function validateInputs() {
     }
   }
 
+  // Once inputs are valid, it allows buttons to be clicked
   if (isValid) {
     completeButton.removeAttribute("disabled");
     addButton.removeAttribute("disabled");
@@ -95,9 +101,11 @@ function validateInputs() {
   }
 }
 
+// What happens when form is submitted
 async function handleFormSubmit(event) {
   event.preventDefault();
 
+  // Workout data defined as an empty object
   let workoutData = {};
 
   if (workoutType === "cardio") {
